@@ -35,7 +35,9 @@
    |                |
    |                +-web.xml
    |
-   +-test <--java test classes go here
+   +-test 
+      |
+      +java  <--java test classes go here
 
 ```
 ## Configuration
