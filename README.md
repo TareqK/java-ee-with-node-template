@@ -1,5 +1,9 @@
 # This is a project template for a Java EE web app with Jersey,Jackson and Hibernate, with a front end assembled by Webpack.
 
+## Useage
+
+Just clone this repo and get to work 
+
 ## Project Structure
 
 
