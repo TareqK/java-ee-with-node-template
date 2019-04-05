@@ -1,7 +1,16 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = (env) => {
+    let copyConfiguration = [
+        {from: './src/WEB-INF', to: 'WEB-INF'},
+        {from: './src/META-INF', to: 'META-INF'}
+    ];
+    if (!env.production) {
+        copyConfiguration.push({from: './src/swagger-ui', to: 'swagger-ui'});
+        copyConfiguration.push({from: './src/swagger.html', to: 'swagger.html'});
+    }
     return{
         mode: env.production ? 'production' : 'development',
         entry: './src/app.js',
@@ -11,10 +20,9 @@ module.exports = (env) => {
         plugins: [new HtmlWebpackPlugin({
                 title: 'Hello World'
             }),
-            new CopyWebpackPlugin([
-                {from: './src/WEB-INF', to: 'WEB-INF'},
-                {from: './src/META-INF', to: 'META-INF'}
-            ])],
+            new CopyWebpackPlugin(copyConfiguration),
+            new CleanWebpackPlugin()
+        ],
         optimization: {
             minimize: env.production
         },

@@ -27,6 +27,7 @@ Just clone this repo and get to work
    |        +-src    <-- This is where we do our frontend work
    |           |
    |           +-app.js     <-- This is the entry point to our application
+   |           |-swagger.html <-- set the openapi settings here
    |           +-styles
    |           |    |
    |           |    +-app.css
@@ -36,9 +37,12 @@ Just clone this repo and get to work
    |           |    +-context.xml
    |           |  
    |           +-WEB-INF
-   |                |
-   |                +-web.xml
-   |
+   |           |    |
+   |           |    +-web-production.xml --> settings for production builds
+   |           |    |
+   |           |    +-web-development.xml --> settings for development builds
+   |           |
+   |           +-swagger-ui <-- swagger UI folder, do not touch
    +-test 
       |
       +java  <--java test classes go here
@@ -50,7 +54,7 @@ Just clone this repo and get to work
 
 In the file pom.xml, set your application name, and add any java dependencies you need.
 
-### web.xml
+### web-production.xml/web-development.xml
 
 In the file src/main/webapp/src/WEB-INF/web.xml, set the base of your jersey API, 
 your endpoints package, and a webcontext listener if you want to use one
@@ -65,9 +69,14 @@ In the file src/main/resource/META-INF/persistence.xml, set the name of your
 persistence unit, the JDBC connection string, and username and password for the
 database.
 
+### swagger.html
+
+In the file src/main/webapp/src/swagger.html, enter the base of your jersey API
+so you can access the swagger UI for testing.
+
 ## Building
 
-development(non minified builds) : 
+development(non minified builds), including swagger-ui : 
 
 ```
 mvn clean install -Dproduction=false

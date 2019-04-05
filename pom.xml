@@ -23,8 +23,19 @@
         <junit_version>4.10</junit_version>
         <node_version>v6.9.1</node_version>
         <production>false</production>
+        <swagger_version>2.0.6</swagger_version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-jaxrs2</artifactId>
+            <version>${swagger_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
+            <version>${swagger_version}</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-parameter-names</artifactId>
@@ -159,8 +170,10 @@
                         <artifactId>maven-war-plugin</artifactId>
                         <version>2.3</version>
                         <configuration>
+                            <webXml>${basedir}/src/main/webapp/dist/WEB-INF/web-production.xml</webXml>
                             <warSourceDirectory>${basedir}/src/main/webapp/dist</warSourceDirectory>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceExcludes>swagger-ui/**</warSourceExcludes>
+                            <failOnMissingWebXml>true</failOnMissingWebXml>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -256,8 +269,9 @@
                         <artifactId>maven-war-plugin</artifactId>
                         <version>2.3</version>
                         <configuration>
+                            <webXml>${basedir}/src/main/webapp/dist/WEB-INF/web-development.xml</webXml>
                             <warSourceDirectory>${basedir}/src/main/webapp/dist</warSourceDirectory>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <failOnMissingWebXml>true</failOnMissingWebXml>
                         </configuration>
                     </plugin>
                     <plugin>

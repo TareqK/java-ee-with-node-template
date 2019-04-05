@@ -25,9 +25,11 @@
         <servlet-name>Jersey Rest API</servlet-name >
         <url-pattern>${API_BASE_NAME}</url-pattern >
     </servlet-mapping >
+  
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    <!--- Listener Configuration-->
     <!--<listener>
         <listener-class>
             ${LISTENER_CLASS_NAME}
